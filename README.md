@@ -2,14 +2,11 @@
 
 This package generates a random string from a pattern.
 
-## About this project
+## Install this package
 
-
-
-It is based on the Perl module String::Random by Steven Pritchard <steve@silug.org> (now maintained by Shlomi Fish).
-
-You can read more about this Perl module here -> http://search.cpan.org/~shlomif/String-Random-0.28/lib/String/Random.pm
-
+```
+$ go get github.com/midse/randomstring
+```
 
 ## Basic usage
 
@@ -23,4 +20,16 @@ func main() {
     result := randomstring.FromRegex("\\#\\d\\d\\d")
     fmt.Println(result)
 }
-'''
+```
+
+
+## About this project
+
+Code needs some cleanup and improvements. It was created to implement a basic fuzzer.
+By the way, this module deals only with a subset of regular expressions.
+
+Feel free to contribute.
+
+It's mainly based on the Perl module String::Random by Steven Pritchard <steve@silug.org> (now maintained by Shlomi Fish).
+
+You can read more about this Perl module here -> http://search.cpan.org/~shlomif/String-Random-0.28/lib/String/Random.pm
