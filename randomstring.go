@@ -349,7 +349,7 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 	return char, chars, str
 }
 
-func RandStrFromRegex(myPattern string) string {
+func FromRegex(myPattern string) string {
 	//fmt.Println(myPattern)
 
 	if _, err := regexp.Compile(myPattern); err != nil {
