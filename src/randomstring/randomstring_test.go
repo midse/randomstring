@@ -1,4 +1,4 @@
-package fuzzer
+package randomstring
 
 import (
 	"regexp"
