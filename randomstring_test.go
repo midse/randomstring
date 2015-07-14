@@ -4,6 +4,7 @@ import (
 	"regexp"
 	"testing"
 
+	"github.com/midse/randomstring"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -21,7 +22,7 @@ func TestFromRegex(t *testing.T) {
 
 		myRegexp := tests[i]
 
-		result := FromRegex(myRegexp)
+		result := randomstring.FromRegex(myRegexp)
 		pattern := regexp.MustCompile(myRegexp)
 
 		assert.Equal(t, true, pattern.MatchString(result), "Regex: "+myRegexp+" Output: "+result)
