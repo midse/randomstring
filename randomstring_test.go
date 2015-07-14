@@ -1,4 +1,4 @@
-package randomstring
+package randomstring_test
 
 import (
 	"regexp"
