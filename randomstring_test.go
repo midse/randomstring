@@ -1,8 +1,9 @@
-package randomstring
+package randomstring_test
 
 import (
 	"regexp"
 	"testing"
+	"github.com/midse/randomstring"
 )
 
 func TestFromRegex(t *testing.T) {
@@ -17,7 +18,7 @@ func TestFromRegex(t *testing.T) {
 
 		myRegexp := tests[i]
 
-		result := FromRegex(myRegexp)
+		result := randomstring.FromRegex(myRegexp)
 		pattern := regexp.MustCompile(myRegexp)
 
 		if !pattern.MatchString(result) {
