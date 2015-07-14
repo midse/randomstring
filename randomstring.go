@@ -21,17 +21,17 @@ func generatePunct() []string {
 	return intToStringRange(allRanges)
 }
 
-var digit []string = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
-var lower []string = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
-var upper []string = []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
-var punct []string = generatePunct()
-var any []string = appendStrRanges([][]string{upper, lower, digit, punct})
+var digit = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+var lower = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
+var upper = []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+var punct = generatePunct()
+var any = appendStrRanges([][]string{upper, lower, digit, punct})
 
 // UNUSED
 //var salt []string = appendStrRanges([][]string{upper, lower, digit, []string{".", "/"}})
 //var binary []string = intToStringRange(rangeInt(0, 255))
 
-var patterns map[string][]string = map[string][]string{
+var patterns = map[string][]string{
 	".":   any,
 	"\\d": digit,
 	"\\D": appendStrRanges([][]string{upper, lower, punct}),
@@ -41,13 +41,13 @@ var patterns map[string][]string = map[string][]string{
 	"\\S": appendStrRanges([][]string{upper, lower, digit, punct}), // this might be wrong
 }
 
-var octalPattern *regexp.Regexp = regexp.MustCompile("[0-7]")
-var wordPattern *regexp.Regexp = regexp.MustCompile("\\w")
-var rangePattern *regexp.Regexp = regexp.MustCompile("^(\\d*),(\\d*)$")
-var commaPattern *regexp.Regexp = regexp.MustCompile(".*,.*")
-var dealCharsPattern *regexp.Regexp = regexp.MustCompile("[\\\\.{\\[*+?\\(]")
-var backslashPattern *regexp.Regexp = regexp.MustCompile("(\\\\x[0-9a-f]{2}|\\\\.{1}|.{1})")
-var nonCapturingPattern *regexp.Regexp = regexp.MustCompile("\\?([imsU]*:|P<[a-zA-Z0-9]+>).*$")
+var octalPattern = regexp.MustCompile("[0-7]")
+var wordPattern = regexp.MustCompile("\\w")
+var rangePattern = regexp.MustCompile("^(\\d*),(\\d*)$")
+var commaPattern = regexp.MustCompile(".*,.*")
+var dealCharsPattern = regexp.MustCompile("[\\\\.{\\[*+?\\(]")
+var backslashPattern = regexp.MustCompile("(\\\\x[0-9a-f]{2}|\\\\.{1}|.{1})")
+var nonCapturingPattern = regexp.MustCompile("\\?([imsU]*:|P<[a-zA-Z0-9]+>).*$")
 
 func dealWithChars(char string, chars []string, str [][]string) (string, []string, [][]string) {
 	switch char {
@@ -111,7 +111,7 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 				start := tmp[len(tmp)-1][0]
 
 				if string(start) != "[" {
-					for n := start; n <= char[0]; n += 1 {
+					for n := start; n <= char[0]; n++ {
 						tmp = append(tmp, string(n))
 					}
 				} else {
@@ -258,7 +258,7 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 			} else {
 				if len(str)-1 >= 0 {
 					last := str[len(str)-1]
-					for n := 0; n < (nbOfChar - 1); n += 1 {
+					for n := 0; n < (nbOfChar - 1); n++ {
 						str = append(str, last)
 					}
 				}
@@ -275,9 +275,9 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 
 		// @TODO : (?iMsu) case
 		// @TODO : nest parenthesis parsing improvement
-		for n = 0; n < len(chars); n += 1 {
+		for n = 0; n < len(chars); n++ {
 			if chars[n] == "(" && n > 0 && chars[n-1] != "\\" {
-				nbParLeft += 1
+				nbParLeft++
 			}
 
 			if chars[n] == ")" && nbParLeft == 1 && n > 0 && chars[n-1] != "\\" {
@@ -286,7 +286,7 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 			}
 
 			if chars[n] == ")" && n > 0 && chars[n-1] != "\\" {
-				nbParLeft -= 1
+				nbParLeft--
 			}
 
 		}
@@ -303,9 +303,9 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 			lastPos := 0
 			endPar := 0
 
-			for i := 0; i < len(chars); i += 1 {
+			for i := 0; i < len(chars); i++ {
 				if chars[i] == "(" && i > 0 && chars[i-1] != "\\" {
-					nbParLeft += 1
+					nbParLeft++
 					doNotSplit = true
 				}
 
@@ -316,7 +316,7 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 				}
 
 				if chars[i] == ")" && i > 0 && chars[i-1] != "\\" {
-					nbParLeft -= 1
+					nbParLeft--
 					doNotSplit = false
 				}
 
@@ -381,7 +381,7 @@ func FromRegex(myPattern string) string {
 	}
 
 	// Generate the final string
-	for i := 0; i < len(str); i += 1 {
+	for i := 0; i < len(str); i++ {
 		curStr := str[i]
 
 		if len(curStr) > 1 {
