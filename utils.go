@@ -15,7 +15,7 @@ func rangeInt(a int, b int) []int {
 	myRange := make([]int, (b-a)+1)
 
 	j := 0
-	for i := a; i <= b; i += 1 {
+	for i := a; i <= b; i++ {
 		myRange[j] = i
 		j++
 	}
@@ -36,7 +36,7 @@ func intToStringRange(intRange []int) []string {
 func appendIntRanges(ranges [][]int) []int {
 	var appended []int
 
-	for i := 0; i < len(ranges); i += 1 {
+	for i := 0; i < len(ranges); i++ {
 		appended = append(appended, ranges[i]...)
 	}
 
@@ -46,7 +46,7 @@ func appendIntRanges(ranges [][]int) []int {
 func appendStrRanges(ranges [][]string) []string {
 	var appended []string
 
-	for i := 0; i < len(ranges); i += 1 {
+	for i := 0; i < len(ranges); i++ {
 		appended = append(appended, ranges[i]...)
 	}
 
@@ -58,7 +58,7 @@ func prepend(toPrepend string, array []string) []string {
 }
 
 func prependArray(toPrepend []string, array []string) []string {
-	for i := len(toPrepend) - 1; i >= 0; i -= 1 {
+	for i := len(toPrepend) - 1; i >= 0; i-- {
 		array = prepend(toPrepend[i], array)
 	}
 
@@ -105,7 +105,7 @@ func deleteKeysFromArray(keys []string, array []string) []string {
 
 	keyPattern, _ := regexp.Compile(pattern)
 
-	for index := 0; index < len(array); index += 1 {
+	for index := 0; index < len(array); index++ {
 		if r := keyPattern.FindString(array[index]); r != "" {
 			array = deleteFromIndex(index, array)
 			index -= 1
@@ -128,13 +128,13 @@ func arrayToMap(array []string) map[string][]string {
 
 		if _, ok := rule[key[0]]; ok {
 			if len(key) > 1 {
-				clean_key := strings.Join(key[1:], "")
-				rule[key[0]] = append(rule[key[0]], strings.Trim(clean_key, "\""))
+				cleanKey := strings.Join(key[1:], "")
+				rule[key[0]] = append(rule[key[0]], strings.Trim(cleanKey, "\""))
 			}
 		} else {
 			if len(key) > 1 {
-				clean_key := strings.Join(key[1:], "")
-				rule[key[0]] = []string{strings.Trim(clean_key, "\"")}
+				cleanKey := strings.Join(key[1:], "")
+				rule[key[0]] = []string{strings.Trim(cleanKey, "\"")}
 			} else {
 				rule[key[0]] = []string{}
 			}
