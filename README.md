@@ -1,5 +1,7 @@
 # randomstring
 
+[![Build Status](https://drone.io/github.com/midse/randomstring/status.png)](https://drone.io/github.com/midse/randomstring/latest)
+
 This package generates a random string from a pattern.
 
 ## Install this package
