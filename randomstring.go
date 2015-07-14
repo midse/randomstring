@@ -105,13 +105,13 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 			}
 
 			// Is this a range ?
-			if char == "-" && len(chars) > 0 && len(tmp) > 0 {
+			if char == "-" && chars[0] != "]" && len(chars) > 0 && len(tmp) > 0 {
 				char, chars = shift(chars)
 
 				start := tmp[len(tmp)-1][0]
 
 				if string(start) != "[" {
-					for n := start; n <= char[0]; n++ {
+					for n := start + 1; n <= char[0]; n++ {
 						tmp = append(tmp, string(n))
 					}
 				} else {
@@ -176,6 +176,7 @@ func dealWithChars(char string, chars []string, str [][]string) (string, []strin
 		}
 
 		str = append(str, tmp)
+
 	case "*":
 
 		// We don't handle this case --> .*? so we delete the "?"
@@ -385,7 +386,7 @@ func FromRegex(myPattern string) string {
 		curStr := str[i]
 
 		if len(curStr) > 1 {
-			randomStr += string(curStr[randInt(0, len(curStr)-1)])
+			randomStr += string(curStr[randInt(0, len(curStr))])
 		} else {
 			randomStr += string(curStr[0])
 		}
