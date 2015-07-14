@@ -1,6 +1,6 @@
 # randomstring
 
-[![Build Status](https://drone.io/github.com/midse/randomstring/status.png)](https://drone.io/github.com/midse/randomstring/latest)
+[![Build Status](https://drone.io/github.com/midse/randomstring/status.png)](https://drone.io/github.com/midse/randomstring/latest) [![Coverage Status](https://coveralls.io/repos/midse/randomstring/badge.svg?branch=master&service=github)](https://coveralls.io/github/midse/randomstring?branch=master)
 
 This package generates a random string from a pattern.
 
