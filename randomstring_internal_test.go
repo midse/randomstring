@@ -1,12 +1,21 @@
 package randomstring
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestRangeInt(t *testing.T) {
-	t.Error("Fail!")
+	assert.Equal(t, rangeInt(1, 5), []int{1, 2, 3, 4, 5}, "they should be equal")
+	assert.Equal(t, rangeInt(5, 1), []int{}, "a > b empty return")
+	assert.Equal(t, rangeInt(1, 1), []int{1}, "a = b should return a")
+	assert.Equal(t, rangeInt(0, 1), []int{0, 1}, "should be equal")
+	assert.Equal(t, rangeInt(2, 4), []int{2, 3, 4}, "should be equal")
+	assert.Equal(t, rangeInt(-5, 0), []int{-5, -4, -3, -2, -1, 0}, "should be equal")
 }
 
-func TestIntToStringRange(t *testing.T) {
+/*func TestIntToStringRange(t *testing.T) {
 	t.Error("Fail!")
 }
 
@@ -52,4 +61,4 @@ func TestArrayToMap(t *testing.T) {
 
 func TestSmartSplit(t *testing.T) {
 	t.Error("Fail!")
-}
+}*/
