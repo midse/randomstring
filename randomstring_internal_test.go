@@ -48,31 +48,3 @@ func TestPrependArray(t *testing.T) {
 func TestShift(t *testing.T) {
 	 t.Error("Fail!")
 }*/
-
-func TestRandomString(t *testing.T) {
-	assert.Equal(t, 0, len(randomString(0)))
-	assert.Equal(t, 1, len(randomString(1)))
-	assert.Equal(t, 10, len(randomString(10)))
-}
-
-func TestDeleteFromIndex(t *testing.T) {
-	assert.Equal(t, []string{}, deleteFromIndex(0, []string{"a"}))
-	assert.Equal(t, []string{"a", "c"}, deleteFromIndex(1, []string{"a", "b", "c"}))
-	assert.Equal(t, []string{"a"}, deleteFromIndex(1, []string{"a", "b"}))
-	assert.Equal(t, []string{"b"}, deleteFromIndex(0, []string{"a", "b"}))
-	assert.Equal(t, []string{"a"}, deleteFromIndex(1, []string{"a"}), "Removing outside the array should not fail")
-	assert.Equal(t, []string{"a"}, deleteFromIndex(-1, []string{"a"}), "Removing outside the array should not fail")
-}
-
-/*
-func TestDeleteKeysFromArray(t *testing.T) {
-	t.Error("Fail!")
-}
-
-func TestArrayToMap(t *testing.T) {
-	t.Error("Fail!")
-}
-
-func TestSmartSplit(t *testing.T) {
-	t.Error("Fail!")
-}*/
