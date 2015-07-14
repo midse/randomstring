@@ -90,6 +90,10 @@ func randomString(l int) string {
 }
 
 func deleteFromIndex(index int, array []string) []string {
+	if index >= len(array) || index < 0 {
+		return array
+	}
+
 	return append(array[:index], array[index+1:]...)
 }
 
